@@ -1,0 +1,287 @@
+/* ============================================
+   DESIGN TOKENS
+   Define your palette/type ONCE as variables.
+   Change a value here, it updates everywhere —
+   this is the whole point of custom properties.
+   ============================================ */
+:root {
+  --color-bg: #F7F8FA;
+  --color-surface: #FFFFFF;
+  --color-ink: #1D2433;
+  --color-ink-muted: #5B6472;
+  --color-accent: #2B5FE0;
+  --color-accent-hover: #2350C7;
+  --color-success: #1E8A5F;
+  --color-success-bg: #E6F4EE;
+  --color-error: #C0392B;
+  --color-border: #D8DCE3;
+  --color-stripe: #EEF1F5;
+
+  --font-body: 'ProFontWindows Bold', 'Trebuchet MS', sans-serif;
+  --font-mono: 'ProFontWindows Bold', 'Courier New', monospace;
+
+  --radius: 10px;
+  --shadow-card: 0 1px 3px rgba(29, 36, 51, 0.08), 0 1px 2px rgba(29, 36, 51, 0.04);
+}
+
+/* ============================================
+   RESET & BASE
+   Border-box everywhere so padding never breaks
+   your width math. This saves you hours of
+   "why is this div too wide" debugging.
+   ============================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  line-height: 1.5;
+  padding: 2rem 1rem;
+}
+
+/* A max-width + centering pattern you'll use constantly.
+   Content shouldn't stretch edge-to-edge on wide screens. */
+.app-header,
+main,
+.app-footer {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.app-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.app-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.app-header .subtitle {
+  color: var(--color-ink-muted);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+/* ============================================
+   CARD PATTERN
+   Both sections share this "card" look, so we
+   style them together. Consistency = one visual
+   language, not two competing ones.
+   ============================================ */
+.attendance-form,
+.attendance-list {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.attendance-form h2,
+.attendance-list h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+#countBadge {
+  color: var(--color-ink-muted);
+  font-weight: 400;
+}
+
+/* ============================================
+   FORM FIELDS
+   Every input gets breathing room and a visible
+   focus state — accessibility is not optional.
+   ============================================ */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  margin-bottom: 0.35rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Student ID is a CODE, not a word — set it in mono
+   so it visually reads as a lookup value, same idea
+   as the table column below. */
+#studentId {
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(43, 95, 224, 0.15);
+}
+
+.form-group input:invalid:not(:placeholder-shown) {
+  border-color: var(--color-error);
+}
+
+.error-message {
+  display: block;
+  color: var(--color-error);
+  font-size: 0.8rem;
+  min-height: 1.1em; /* reserves space so layout doesn't jump when an error appears */
+  margin-top: 0.25rem;
+}
+
+/* ============================================
+   BUTTON
+   ============================================ */
+.btn-primary {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.98); /* tiny press feedback — cheap, effective */
+}
+
+.form-status {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-success);
+  margin-top: 0.75rem;
+  min-height: 1.2em;
+}
+
+/* ============================================
+   ATTENDANCE TABLE
+   ============================================ */
+#attendanceTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#attendanceTable th {
+  text-align: left;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink-muted);
+  padding: 0.5rem 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+#attendanceTable td {
+  padding: 0.65rem 0.5rem;
+  border-bottom: 1px solid var(--color-stripe);
+  font-size: 0.9rem;
+}
+
+#attendanceTable tbody tr:hover {
+  background: var(--color-stripe);
+}
+
+/* IDs stay monospace in the table too — same logic
+   as the input field, consistency reinforces meaning. */
+.cell-id {
+  font-family: var(--font-mono);
+  color: var(--color-ink-muted);
+}
+
+/* ============================================
+   THE SIGNATURE ELEMENT: the "stamp"
+   A small rotated badge that looks like a rubber
+   stamp hitting a paper roster. This is the one
+   place we spend "visual boldness" — everything
+   else stays quiet on purpose.
+   ============================================ */
+.stamp {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-success);
+  background: var(--color-success-bg);
+  border: 1.5px dashed var(--color-success);
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+  transform: rotate(-4deg);
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+.empty-state {
+  text-align: center;
+  color: var(--color-ink-muted);
+  font-size: 0.9rem;
+  padding: 1.5rem 0;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.app-footer {
+  text-align: center;
+  color: var(--color-ink-muted);
+  font-size: 0.8rem;
+  margin-top: 1rem;
+}
+
+/* ============================================
+   RESPONSIVE: stack the form fields on mobile
+   Mobile-first purists start here; we're
+   "desktop-default, adjust down," which is fine
+   for a simple layout like this.
+   ============================================ */
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY: respect reduced-motion users
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
