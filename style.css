@@ -4,6 +4,7 @@
    Change a value here, it updates everywhere —
    this is the whole point of custom properties.
    ============================================ */
+
 :root {
   --color-bg: #F7F8FA;
   --color-surface: #FFFFFF;
